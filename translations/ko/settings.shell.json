@@ -1,0 +1,16 @@
+{
+  "title": "Shell",
+  "description": "각 명령의 실행 시간과 출력량을 제한합니다.",
+  "timeoutMs": "명령 제한 시간(ms)",
+  "timeoutMsHint": "명령 하나가 종료되기 전까지 실행될 수 있는 시간입니다.",
+  "maxOutputBytes": "스트림당 출력 상한(바이트)",
+  "maxOutputBytesHint": "이 범위를 초과한 출력은 유실되지 않고 임시 파일로 저장됩니다.",
+  "overridden": "재정의됨",
+  "reset": "기본값으로 재설정",
+  "readOnly": "이 배포에서는 설정을 읽기 전용으로 저장합니다.",
+  "unavailable": "이 플러그인이 로드되지 않아 지금은 구성할 수 없습니다.",
+  "save": "저장",
+  "saving": "저장 중…",
+  "saveFailed": "배포에서 이 값을 허용하지 않았습니다. 값을 수정할 수 있도록 그대로 두었습니다.",
+  "invalidNumber": "숫자를 입력하거나, 기본값을 사용하려면 비워 두세요."
+}

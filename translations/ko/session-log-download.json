@@ -1,0 +1,12 @@
+{
+  "header.more": "추가 작업",
+  "menu.download": "세션 로그 다운로드",
+  "menu.feedback": "피드백",
+  "dialog.preparingTitle": "세션 내보내는 중",
+  "dialog.preparingDescription": "이 세션과 하위 세션, 첨부 파일을 포함한 ZIP 파일을 준비하고 있습니다.",
+  "dialog.successTitle": "세션 다운로드가 시작되었습니다",
+  "dialog.successDescription": "브라우저에서 세션 ZIP 파일을 다운로드하고 있습니다.",
+  "dialog.errorTitle": "세션 내보내기 실패",
+  "dialog.close": "닫기",
+  "dialog.commandFailed": "세션 내보내기를 시작하지 못했습니다."
+}

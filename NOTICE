@@ -1,0 +1,17 @@
+# NOTICE
+
+This package translates user-interface strings of **DeepSeek Harness (DSH)**.
+
+- The English source strings are part of the DSH desktop application and are
+  distributed by DeepSeek under the MIT License
+  (`MIT License — Copyright (c) 2026 DeepSeek`), as shipped in the
+  `LICENSE` files of the `@deepseek-ai/*` packages.
+- `translations/ko/*.json` in this repository contains Korean translations of
+  those strings and is distributed under the same MIT License.
+- `schema/namespaces.json` contains only key names and placeholder names
+  (no English copy) so that CI can validate translations offline.
+- This is an unofficial community language pack. It is not published,
+  endorsed, or supported by DeepSeek.
+
+The build scripts read the English dictionaries from a local DSH installation.
+They are not included in this repository.
