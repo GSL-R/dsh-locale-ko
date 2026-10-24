@@ -2,6 +2,7 @@
 
 [![validate](https://github.com/GSL-R/dsh-locale-ko/actions/workflows/ci.yml/badge.svg)](https://github.com/GSL-R/dsh-locale-ko/actions/workflows/ci.yml)
 [![watch-dsh](https://github.com/GSL-R/dsh-locale-ko/actions/workflows/watch-dsh.yml/badge.svg)](https://github.com/GSL-R/dsh-locale-ko/actions/workflows/watch-dsh.yml)
+[![npm](https://img.shields.io/npm/v/dsh-locale-ko-kr.svg)](https://www.npmjs.com/package/dsh-locale-ko-kr)
 
 **DeepSeek Harness 웹 GUI용 한국어 언어 팩.** DSH는 기본적으로 `English`와 `中文`만 제공합니다.
 이 플러그인은 [공식 언어 팩 규격](https://github.com/deepseek-ai)대로 `ko` 로케일을 등록해

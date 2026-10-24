@@ -55,9 +55,34 @@ npm run verify    # build --strict + check
 4. 프로필에 설치된 사본은 자동 갱신되지 않으므로 다시 설치합니다.
 
 ```powershell
-dsh plugin --profile desktop remove dsh-locale-ko
+dsh plugin --profile desktop remove dsh-locale-ko-kr
 dsh plugin --profile desktop add "file:<저장소 절대 경로>"
 ```
+
+## 릴리스 (OIDC)
+
+`v*` 태그를 푸시하면 [release.yml](../.github/workflows/release.yml)이 npm에 게시합니다.
+토큰·OTP 없이 **Trusted Publishing(OIDC)** 으로 동작하므로, 아래를 **한 번만** 설정하면 됩니다.
+
+1. https://www.npmjs.com/package/dsh-locale-ko-kr/access → **Trusted Publisher**
+2. **GitHub Actions** 선택 후 입력:
+
+   | 항목 | 값 |
+   | --- | --- |
+   | Organization or user | `GSL-R` |
+   | Repository | `dsh-locale-ko` |
+   | Workflow filename | `release.yml` |
+   | Environment | (비움) |
+
+3. 이후 릴리스:
+
+```bash
+git tag v0.1.1 && git push origin v0.1.1
+```
+
+참고: npm은 **패키지의 첫 버전만** OIDC로 게시할 수 없다([npm/cli#8544](https://github.com/npm/cli/issues/8544)).
+`dsh-locale-ko-kr`는 0.1.0을 토큰으로 게시했으므로 이후 버전부터 OIDC가 동작합니다.
+또한 첫 게시 때 npm이 만든 `0.0.0-stage` 자리표시자 버전은 지울 수 없으니 그대로 둡니다.
 
 ## 문제가 생기면
 
