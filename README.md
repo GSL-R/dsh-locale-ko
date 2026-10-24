@@ -97,6 +97,18 @@ npm run check                                                            # 키/�
 이슈 본문에 재번역 절차가 함께 들어갑니다. 이미 열린 이슈가 있으면 중복 생성하지 않습니다.
 수동 실행은 `Actions → watch-dsh → Run workflow`.
 
+## 보안
+
+- 모든 버전이 **SLSA provenance**와 함께 GitHub Actions에서 게시됩니다(저장소·커밋·워크플로가 서명으로 남음).
+- npm 패키지 설정에서 **2FA 필수 + 토큰 게시 차단**을 적용해, 게시 경로를 **OIDC 하나로** 제한했습니다.
+- **설치 스크립트가 없습니다**(`preinstall`/`install`/`postinstall` 없음). 설치해도 코드가 실행되지 않습니다.
+- 검증 명령과 신고 절차는 [SECURITY.md](SECURITY.md)에 정리했습니다.
+
+```powershell
+npm audit signatures
+npm view dsh-locale-ko-kr scripts   # 비어 있어야 정상
+```
+
 ## English
 
 `dsh-locale-ko-kr` is a community Korean language pack for the DeepSeek Harness web GUI.

@@ -1,6 +1,6 @@
 {
   "name": "dsh-locale-ko-kr",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Korean (ko) language pack for the DeepSeek Harness web GUI",
   "license": "MIT",
   "author": "GSL-R",
@@ -34,6 +34,7 @@
     "locale/*.json",
     "icon.svg",
     "README.md",
+    "SECURITY.md",
     "LICENSE",
     "NOTICE"
   ],
