@@ -40,13 +40,25 @@ for (const [namespace, data] of [...namespaces.entries()].sort(([a], [b]) => a.l
   keys += Object.keys(data.en).length;
   fs.writeFileSync(path.join(outDir, `${namespace}.json`), `${JSON.stringify(data, null, 2)}\n`);
 }
+const extractedAt = new Date().toISOString();
 fs.writeFileSync(path.join(outDir, '_meta.json'), `${JSON.stringify({
   runtime: runtime.name,
   version: runtime.version,
   asar: asarPath,
-  extractedAt: new Date().toISOString(),
+  extractedAt,
   namespaces: namespaces.size,
   keys,
+}, null, 2)}\n`);
+
+// Refresh the committed baseline so the release watcher knows what we cover.
+const metaPath = 'schema/meta.json';
+const previous = fs.existsSync(metaPath) ? JSON.parse(fs.readFileSync(metaPath, 'utf8')) : {};
+fs.mkdirSync('schema', { recursive: true });
+fs.writeFileSync(metaPath, `${JSON.stringify({
+  dshVersion: runtime.version ?? previous.dshVersion,
+  feed: previous.feed ?? 'https://download.deepseek.com/dsh-desk/feeds/win-x64/nightly.yml',
+  npmPackage: previous.npmPackage ?? '@deepseek-ai/dsh',
+  checkedAt: extractedAt,
 }, null, 2)}\n`);
 
 console.log(`extracted ${namespaces.size} namespaces / ${keys} keys from ${runtime.name ?? 'DSH'} ${runtime.version ?? ''}`);

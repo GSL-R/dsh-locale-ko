@@ -1,0 +1,47 @@
+name: watch-dsh
+
+on:
+  schedule:
+    # 22:00 UTC = 07:00 KST, every day
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Compare the baseline with the live DSH release feed
+        run: node scripts/check-update.mjs
+
+      - name: Publish the report to the job summary
+        run: cat reports/update.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Read the check result
+        id: state
+        run: |
+          node -e "const s=require('./reports/update.json');console.log('has_update='+s.hasUpdate);console.log('version='+(s.feedVersion??'unknown'));" >> "$GITHUB_OUTPUT"
+
+      - name: Open an update issue
+        if: steps.state.outputs.has_update == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create dsh-update --color BFD4F2 --description "새 DSH 버전 감지" || true
+          open=$(gh issue list --state open --label dsh-update --json number --jq 'length')
+          if [ "$open" = "0" ]; then
+            gh issue create \
+              --title "DSH ${{ steps.state.outputs.version }} 업데이트 감지" \
+              --body-file reports/update.md \
+              --label dsh-update
+          else
+            echo "이미 열린 업데이트 이슈가 있어 새로 만들지 않습니다."
+          fi

@@ -1,5 +1,5 @@
 {
-  "name": "dsh-locale-ko",
+  "name": "dsh-locale-ko-kr",
   "version": "0.1.0",
   "description": "Korean (ko) language pack for the DeepSeek Harness web GUI",
   "license": "MIT",
@@ -43,6 +43,7 @@
     "build": "node scripts/build-client.mjs",
     "check": "node scripts/check.mjs",
     "smoke": "node scripts/smoke.mjs",
+    "update-check": "node scripts/check-update.mjs",
     "test": "node scripts/smoke.mjs && node scripts/check.mjs",
     "verify": "node scripts/build-client.mjs --strict && node scripts/check.mjs"
   },
