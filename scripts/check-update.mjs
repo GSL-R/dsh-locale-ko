@@ -70,4 +70,10 @@ npm run build && npm run check
 fs.writeFileSync('reports/update.md', body);
 
 console.log(`${hasUpdate ? 'UPDATE' : 'OK'} — baseline ${baselineVersion}, feed ${feedVersion ?? 'unknown'}, npm latest ${npmTags.latest ?? 'unknown'}${errors.length ? ` (${errors.join('; ')})` : ''}`);
+
+// A watcher that cannot reach either source must fail loudly instead of reporting "no update".
+if (!feedVersion && Object.keys(npmTags).length === 0) {
+  console.error('both the desktop feed and the npm registry are unreadable — the watch is broken');
+  process.exit(2);
+}
 if (strict && hasUpdate) process.exit(1);
